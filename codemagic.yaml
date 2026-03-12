@@ -36,7 +36,7 @@ workflows:
           google_play:
             credentials: $GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS
             track: $GOOGLE_PLAY_TRACK  # <--- Use the variable here
-        submit_as_draft: true
+            submit_as_draft: true
 
 
 
