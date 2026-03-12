@@ -5,7 +5,13 @@ apply plugin: "com.facebook.react"
 import java.io.File
 import java.util.*
 
-val keystoreProperties =
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+/** val keystoreProperties =
     Properties().apply {
         var file = File("key.properties")
         if (file.exists()) load(file.reader())
