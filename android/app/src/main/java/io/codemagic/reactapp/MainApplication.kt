@@ -1,4 +1,4 @@
-package com.reactapp
+package io.codemagic.reactapp
 
 import android.app.Application
 import com.facebook.react.PackageList
