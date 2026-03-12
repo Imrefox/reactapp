@@ -7,7 +7,7 @@ workflows:
           android_signing:
             - reactapp
           groups:
-            - google_raectapp # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS <-- Put your google-services.json)
+            - google_reactapp # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS <-- Put your google-services.json)
           vars:
             PACKAGE_NAME: "io.codemagic.reactapp" # <-- Put your package name here e.g. com.domain.myapp
             GOOGLE_PLAY_TRACK: internal
