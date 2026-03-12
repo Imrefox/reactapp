@@ -23,6 +23,9 @@ workflows:
               script: |
                 BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
                 echo "Build_Number= $BUILD_NUMBER"
+
+                 cd android
+                 ./gradlew bundleRelease
         artifacts:
             - android/app/build/outputs/**/*.aab #build/**/outputs/**/*.aab
         publishing:

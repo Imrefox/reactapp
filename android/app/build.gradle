@@ -93,7 +93,7 @@ android {
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace "io.codemagic.reactapp"
-    def appVersionCode = (System.getenv("NEW_BUILD_NUMBER") ?: "1").toInteger()
+    def appVersionCode = (System.getenv("BUILD_NUMBER") ?: "1").toInteger()
 
     defaultConfig {
         applicationId "io.codemagic.reactapp"
