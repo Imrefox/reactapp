@@ -2,6 +2,15 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+import java.io.File
+import java.util.*
+
+val keystoreProperties =
+    Properties().apply {
+        var file = File("key.properties")
+        if (file.exists()) load(file.reader())
+    }
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -77,32 +86,36 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "io.codemagic.reactapp"
+    namespace "io.codemagic.reactapp"val appVersionCode = (System.getenv()["NEW_BUILD_NUMBER"] ?: "1")?.toInt()
+
+
+
     defaultConfig {
         applicationId "io.codemagic.reactapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode appVersionCode
         versionName "1.0"
     }
     signingConfigs {
-        debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+        create("release") {
+            if (System.getenv()["CI"].toBoolean()) { // CI=true is exported by Codemagic
+                storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
+                storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
+                keyAlias = System.getenv()["CM_KEY_ALIAS"]
+                keyPassword = System.getenv()["CM_KEY_PASSWORD"]
+            } else {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
         }
     }
     buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-        }
-        release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }
