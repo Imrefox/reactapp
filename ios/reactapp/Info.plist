@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CodePushServerURL</key>
+	<string>https://codepush.pro/</string>
+	<key>CodePushDeploymentKey</key>
+	<string>lSaQlO2-zVe3OYT_BQHEkhGi77Zi693fe8826e8956fea920efab</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
