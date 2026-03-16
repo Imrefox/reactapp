@@ -7,7 +7,7 @@ function App() {
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
       <View style={styles.container}>
-        <Text style={styles.text}>Hello All The People</Text>
+        <Text style={styles.text}>Hello Codepush</Text>
       </View>
     </SafeAreaProvider>
   );
