@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply from: "../../node_modules/@code-push-next/react-native-code-push/android/codepush.gradle"
 
 import java.io.File
 import java.util.*
