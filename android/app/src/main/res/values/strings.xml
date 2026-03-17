@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">reactapp</string>
+    <string moduleConfig="true" name="CodePushServerUrl">https://codepush.pro/</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">agtgtN8KbZ3kNwqjTyH0k92rHZyV693fe8826e8956fea920efab</string>
 </resources>
