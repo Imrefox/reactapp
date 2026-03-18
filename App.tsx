@@ -7,7 +7,7 @@ function App() {
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
       <View style={styles.container}>
-        <Text style={styles.text}>Push and Pullin Codepush</Text>
+        <Text style={styles.text}>Codepush Rocks more than Stones</Text>
       </View>
     </SafeAreaProvider>
   );
@@ -26,4 +26,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default codePush(App);
+//export default codePush(App);
+
+export default codePush({
+  checkFrequency: codePush.CheckFrequency.ON_APP_START,
+  installMode: codePush.InstallMode.IMMEDIATE,
+})(App);
+
